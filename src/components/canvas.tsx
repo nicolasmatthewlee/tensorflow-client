@@ -1,5 +1,7 @@
 import { useState } from "react";
 import CanvasBlock from "./canvas-block";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const Canvas = ({ mousedown }: { mousedown: boolean }) => {
   const n = 28;
@@ -37,9 +39,13 @@ const Canvas = ({ mousedown }: { mousedown: boolean }) => {
     getPrediction();
   };
 
+  const eraseCanvas = () => {
+    setCanvas(new Array(n).fill(new Array(n).fill(false)));
+  };
+
   return (
     <div className="flex flex-col space-y-[10px]">
-      <div className="border-[2px] border-black rounded">
+      <div className="border-[2px] border-gray-300 rounded">
         {canvas.map((r, row) => (
           <div className="flex" key={`row-${row}`}>
             {r.map((filled, col) => (
@@ -52,13 +58,22 @@ const Canvas = ({ mousedown }: { mousedown: boolean }) => {
           </div>
         ))}
       </div>
-      <button
-        onClick={handleSubmit}
-        className="border-[2px] border-black px-[10px] py-[2px] font-bold rounded
-        hover:bg-gray-100"
-      >
-        send
-      </button>
+      <div className="flex gap-x-[10px]">
+        <button
+          onClick={handleSubmit}
+          className="flex-1 border-[2px] border-emerald-500 text-emerald-500 bg-emerald-50 px-[10px] py-[2px] font-bold rounded
+            hover:bg-emerald-100"
+        >
+          submit
+        </button>
+        <button
+          className="border-[2px] border-red-500 bg-red-50 px-[10px] py-[2px] font-bold rounded
+            hover:bg-red-100"
+          onClick={eraseCanvas}
+        >
+          <FontAwesomeIcon className="text-red-500" icon={faTrash} />
+        </button>
+      </div>
       {prediction && <h3>predicted value: {prediction}</h3>}
     </div>
   );

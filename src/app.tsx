@@ -12,18 +12,18 @@ const App = () => {
   };
 
   useEffect(() => {
-    window.addEventListener("mousedown", handleMousedown);
-    return () => window.removeEventListener("mousedown", handleMousedown);
+    window.addEventListener("keydown", handleMousedown);
+    return () => window.removeEventListener("keydown", handleMousedown);
   }, []);
 
   useEffect(() => {
-    window.addEventListener("mouseup", handleMouseup);
-    return () => window.removeEventListener("mouseup", handleMouseup);
+    window.addEventListener("keyup", handleMouseup);
+    return () => window.removeEventListener("keyup", handleMouseup);
   }, []);
 
   return (
     <div className="p-[30px] flex flex-col space-y-[30px] items-center">
-      <h1>click and drag to draw a number</h1>
+      <h1>hold d or k and drag to draw a number</h1>
       <Canvas mousedown={mousedown} />
     </div>
   );
