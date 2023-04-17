@@ -46,6 +46,7 @@ const Canvas = ({ mousedown }: { mousedown: boolean }) => {
 
   const eraseCanvas = () => {
     setCanvas(new Array(n).fill(new Array(n).fill(false)));
+    setPrediction(null);
   };
 
   return (
