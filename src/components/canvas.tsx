@@ -16,6 +16,10 @@ const Canvas = ({ mousedown }: { mousedown: boolean }) => {
     if (mousedown) {
       let nextCanvas = canvas.map((r) => r.slice());
       nextCanvas[row][col] = true;
+      if (row + 1 < n) nextCanvas[row + 1][col] = true;
+      if (row - 1 >= 0) nextCanvas[row - 1][col] = true;
+      if (col + 1 < n) nextCanvas[row][col + 1] = true;
+      if (col - 1 >= 0) nextCanvas[row][col - 1] = true;
       setCanvas(nextCanvas);
       setPrediction(null);
     }
@@ -51,7 +55,7 @@ const Canvas = ({ mousedown }: { mousedown: boolean }) => {
 
   return (
     <div className="flex flex-col space-y-[10px] items-center">
-      <div className="border-[2px] border-gray-300 rounded cursor">
+      <div className="border-[2px] border-gray-300 rounded">
         {canvas.map((r, row) => (
           <div className="flex" key={`row-${row}`}>
             {r.map((filled, col) => (
