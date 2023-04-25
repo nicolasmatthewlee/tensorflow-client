@@ -24,7 +24,10 @@ const App = () => {
   return (
     <div className="p-[30px] flex flex-col space-y-[30px] items-center">
       <h1>hold d or k and drag to draw a number</h1>
-      <Canvas mousedown={mousedown} />
+      <div className="flex space-x-[30px]">
+        <Canvas save={false} mousedown={mousedown} />
+        <Canvas save={true} mousedown={mousedown} />
+      </div>
     </div>
   );
 };
